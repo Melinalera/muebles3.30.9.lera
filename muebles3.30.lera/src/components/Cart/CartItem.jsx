@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 
+
 const CartItem = (product) => {
     const{name,img,cantidad,categoria,stock,precio}=product
   return <div>

@@ -4,17 +4,17 @@ import { Card } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ItemCounts from '../ItemCounts/ItemCounts'
-import {CartContext } from '../Context/CartContext';
+import {CartContext, useCartContext } from '../Context/CartContext';
 
 const ItemDetail = ({product}) => {
 
-  const { cartList,agregarAlCarrito} = useContext(CartContext)
+  const{agregarAlCarrito} = useCartContext();
   const [show,setShow]= useState(true);
  
 
-  console.log(cartList)
 
-  const onAdd=(product,cant)=>{
+
+  const onAdd=(cant)=>{
 
     agregarAlCarrito({...product,cantidad: cant})
     console.log(cant)

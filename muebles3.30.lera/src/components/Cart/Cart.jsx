@@ -3,6 +3,7 @@ import { CartContext } from '../Context/CartContext';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { addDoc, collection, getFirestore, } from 'firebase/firestore';
+import { Card } from 'react-bootstrap';
 
 
 
@@ -64,7 +65,15 @@ const Cart = () => {
             ) : (
                 <>
 
-                    {cartList.map(producto =><li key={producto.id}>{producto.name}</li>)}   
+                    {cartList.map(product =><li key={product.id}><Card style={{ width: '18rem' }}>
+  <Card.Img variant="top" src={product.img} />
+  <Card.Body>
+    <Card.Title>{product.name}</Card.Title>
+    <Card.Text>
+     {product.precio}
+    </Card.Text>
+  </Card.Body>
+</Card></li>)}   
                      <button onClick={vaciarCarrito}>Vaciar Carrito</button>
                      <form 
                             onSubmit={compra} 
