@@ -2,13 +2,12 @@ import React, { useContext } from 'react';
 import { CartContext } from '../Context/CartContext';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useCartContext } from '../Context/CartContext';
 import { addDoc, collection, getFirestore, } from 'firebase/firestore';
 
 
 
 const Cart = () => {
-    const { cartList,vaciarCarrito } = useContext(CartContext);
+    const { cartList,vaciarCarrito,total } = useContext(CartContext);
     const [conditional,setCondicional] = useState (false);
     const [dataForm,setDataForm] = useState({
         email: ' ',
@@ -22,8 +21,8 @@ const Cart = () => {
 
         let orden = {}
 
-        orden.buyer=dataForm//name, email,phone
-       
+        orden.buyer={nombre: 'melina',email:'mel.lera23@gmail.com', tel: ' 1165585521'}
+        orden.total = total()
 
         orden.Item = cartList.map (cartItem =>{
             const id = cartItem.id;
@@ -37,10 +36,11 @@ const Cart = () => {
         })
         const db = getFirestore()
 
-        const ordenCollection = collection(db,'ordenes')
-        await addDoc(ordenCollection,orden)
+        const ordersCollection = collection(db,'ordenes')
+        await addDoc(ordersCollection,orden)
         .then(resp => setIdOrden(resp.id))
         .catch(err=>console.log(err))
+        .finally(err=> console.log(err))
     }
 
     function handleChange(e) {

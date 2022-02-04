@@ -17,33 +17,49 @@ const ItemListContainer = ({saludo}) => {
     const{id} =useParams();
    
     
-  useEffect(()=>{
-     if (id) {
-        const db= getFirestore();
-        const queryProducts =query( collection(db,'Item'),where('categoria','==',id))
-        getDocs(queryProducts)
-        .then((res)=>setData(res.doc.map((prod)=>({ id: prod.id, ...prod.data() })))
-        .catch(err=>err)
-        .finally(()=>setLoading(false))
+useEffect (()=>{
+    setLoading(true);
+    if (id) {
+        const db = getFirestore();
+        const queryCollection = query(
+            collection (db,"Item"),
+            where("categoria", "==", id)
         );
+        getDocs(queryCollection)
+        .then((res)=>{
+            setData(
+                res.docs.map((prod)=>({
+                    id: prod.id,...prod.data(),
+                }))
+            );
+        })
+        .catch((error)=>{
+            console.log("Error en el useEffect",error);
+        })
+        .finally(()=>{
+            setLoading(false);
+        });
 
-        setLoading(false);
-       console.log(getDocs)
+    } else{
+        const db = getFirestore();
+        const queryCollection = collection(db,"Item");
+        getDocs (queryCollection)
+        .then ((res)=>{
+            setData(
+                res.docs.map((prod)=>({
+                    id: prod.id,
+                    ...prod.data(),
+                }))
+            )
+        })
+        .catch((error)=>{
+            console.log("Error en el useEffect",error);
+        })
+        .finally(()=>{setLoading(false);
+        })
+    }
 
-        
-         
-     } else {
-        const db= getFirestore();
-        const queryProducts = collection(db,'Item')
-        getDocs(queryProducts)
-        .then((res)=>setData(res.docs.map((prod)=>({ id: prod.id, ...prod.data() })))
-        );
-        setLoading(false);
-         
-         
-     }
-  },[id]);
-      
+},[id])
    
 
     
