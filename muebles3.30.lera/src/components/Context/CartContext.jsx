@@ -27,6 +27,8 @@ const total =()=> {
 
 
 
+
+
 return(
     <CartContext.Provider value = {{
         cartList,agregarAlCarrito,total
