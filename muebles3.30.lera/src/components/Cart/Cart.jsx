@@ -3,12 +3,13 @@ import { CartContext } from '../Context/CartContext';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { addDoc, collection, getFirestore, } from 'firebase/firestore';
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
+import { useCartContext } from '../Context/CartContext';
 
 
 
 const Cart = () => {
-    const { cartList,vaciarCarrito,total } = useContext(CartContext);
+    const { cartList,vaciarCarrito,total,deleteItem,cantidadItem } = useCartContext ()
     const [conditional,setCondicional] = useState (false);
     const [dataForm,setDataForm] = useState({
         email: ' ',
@@ -51,6 +52,7 @@ const Cart = () => {
       })
         
     }
+    console.log(total)
     return (
         <>
             {cartList.length === 0 ? (
@@ -65,12 +67,23 @@ const Cart = () => {
             ) : (
                 <>
 
-                    {cartList.map(product =><li key={product.id}><Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src={product.img} />
+                    {cartList.map(product =><li key={product.id}>
+   <Card style={{ width: '18rem' }}>
+   <Card.Img variant="top" src={product.img} />
   <Card.Body>
-    <Card.Title>{product.name}</Card.Title>
+  <Card.Title>{product.name}</Card.Title>
     <Card.Text>
      {product.precio}
+    </Card.Text>
+    <Card.Text>
+     {product.cantidad}
+    </Card.Text>
+    <Button onClick={()=> deleteItem(product.id)}>x</Button>
+    <Card.Text>
+     {cantidadItem()}
+    </Card.Text>
+    <Card.Text>
+     Total de la compra:{total()}
     </Card.Text>
   </Card.Body>
 </Card></li>)}   

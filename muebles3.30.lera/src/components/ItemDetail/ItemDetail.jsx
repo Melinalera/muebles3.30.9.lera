@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useContext } from 'react';
 import { Card } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -17,7 +16,7 @@ const ItemDetail = ({product}) => {
   const onAdd=(cant)=>{
 
     agregarAlCarrito({...product,cantidad: cant})
-    console.log(cant)
+   
     setShow(false)
   }
   return <div>
