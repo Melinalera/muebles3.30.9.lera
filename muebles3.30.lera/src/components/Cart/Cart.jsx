@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { addDoc, collection, getFirestore, } from 'firebase/firestore';
 import { Button, Card } from 'react-bootstrap';
 import { useCartContext } from '../Context/CartContext';
+import Resumen from '../Resumen/Resumen';
 
 
 
@@ -67,9 +68,9 @@ const Cart = () => {
             ) : (
             <div>
                 {
-                conditional ? 
-                   <Resumen idOrden={idOrden}
-                 :
+                  conditional ?
+                  <Resumen idOrden={idOrden}/>
+                :
              <>
 
                             {cartList.map(product =><li key={product.id}>
@@ -119,7 +120,9 @@ const Cart = () => {
                                     onChange={handleChange}
                                     value={dataForm.email}
                                 /><br/>
+                                <Link to="/resumen">
                                 <button onClick={compra}>Generar Orden</button>
+                                </Link>
                             </form>
                         
                     </>
