@@ -1,13 +1,13 @@
 import React from 'react'
-
+import{BsFillCartDashFill} from 'react-icons/bs'
 
 
 const Cartwidget = () => {
     return (
         <div>
           
+          <BsFillCartDashFill/>
           
-          <span style={{color: 'red', margin:'0' }}>0</span>
         </div>
     )
 }

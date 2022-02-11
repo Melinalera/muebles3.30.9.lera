@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { CartContext } from '../Context/CartContext';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { addDoc, collection, getFirestore, } from 'firebase/firestore';
@@ -23,7 +22,7 @@ const Cart = () => {
 
         let orden = {}
 
-        orden.buyer={nombre: 'melina',email:'mel.lera23@gmail.com', tel: ' 1165585521'}
+        orden.buyer= dataForm
         orden.total = total()
 
         orden.Item = cartList.map (cartItem =>{
@@ -36,6 +35,7 @@ const Cart = () => {
 
 
         })
+
         const db = getFirestore()
 
         const ordersCollection = collection(db,'ordenes')
@@ -50,9 +50,9 @@ const Cart = () => {
       setDataForm({
           ...dataForm,[e.target.name]: e.target.value
       })
-        
+        console.log(dataForm)
     }
-    console.log(total)
+    
     return (
         <>
             {cartList.length === 0 ? (
@@ -65,61 +65,73 @@ const Cart = () => {
                     </Link>
                 </div>
             ) : (
-                <>
+            <div>
+                {
+                conditional ? 
+                   <Resumen idOrden={idOrden}
+                 :
+             <>
 
-                    {cartList.map(product =><li key={product.id}>
-   <Card style={{ width: '18rem' }}>
-   <Card.Img variant="top" src={product.img} />
-  <Card.Body>
-  <Card.Title>{product.name}</Card.Title>
-    <Card.Text>
-     {product.precio}
-    </Card.Text>
-    <Card.Text>
-     {product.cantidad}
-    </Card.Text>
-    <Button onClick={()=> deleteItem(product.id)}>x</Button>
-    <Card.Text>
-     {cantidadItem()}
-    </Card.Text>
-    <Card.Text>
-     Total de la compra:{total()}
-    </Card.Text>
-  </Card.Body>
-</Card></li>)}   
-                     <button onClick={vaciarCarrito}>Vaciar Carrito</button>
-                     <form 
-                            onSubmit={compra} 
-                            //onChange={handleChange} 
-                        >
-                            <input 
-                                type='text' 
-                                name='name' 
-                                placeholder='name' 
-                                onChange={handleChange}
-                                value={dataForm.name}
-                            /><br />
-                            <input 
-                                type='text' 
-                                name='phone'
-                                placeholder='tel' 
-                                onChange={handleChange}
-                                value={dataForm.phone}
-                            /><br/>
-                            <input 
-                                type='email' 
-                                name='email'
-                                placeholder='email' 
-                                onChange={handleChange}
-                                value={dataForm.email}
-                            /><br/>
-                            <button onClick={compra}>Generar Orden</button>
-                        </form>
+                            {cartList.map(product =><li key={product.id}>
+                        <Card style={{ width: '18rem' }}>
+                        <Card.Img variant="top" src={product.img} />
+                        <Card.Body>
+                        <Card.Title>{product.name}</Card.Title>
+                            <Card.Text>
+                            {product.precio}
+                            </Card.Text>
+                            <Card.Text>
+                            {product.cantidad}
+                            </Card.Text>
+                            <Button onClick={()=> deleteItem(product.id)}>x</Button>
+                            <Card.Text>
+                            {cantidadItem()}
+                            </Card.Text>
+                            <Card.Text>
+                            Total de la compra:{total()}
+                            </Card.Text>
+                        </Card.Body>
+                        </Card></li>)} 
+                        
+                        <button onClick={vaciarCarrito}>Vaciar Carrito</button>
+                        <form 
+                                onSubmit={compra} 
+                                //onChange={handleChange} 
+                            >
+                                <input 
+                                    type='text' 
+                                    name='name' 
+                                    placeholder='name' 
+                                    onChange={handleChange}
+                                    value={dataForm.name}
+                                /><br />
+                                <input 
+                                    type='text' 
+                                    name='phone'
+                                    placeholder='tel' 
+                                    onChange={handleChange}
+                                    value={dataForm.phone}
+                                /><br/>
+                                <input 
+                                    type='email' 
+                                    name='email'
+                                    placeholder='email' 
+                                    onChange={handleChange}
+                                    value={dataForm.email}
+                                /><br/>
+                                <button onClick={compra}>Generar Orden</button>
+                            </form>
+                        
+                    </>
 
-                </>
-            )}
-        </>
-    );
-};
+                }     
+                    
+                </div>)}
+        
+            </>
+        
+        );
+
+    };
 
 export default Cart;

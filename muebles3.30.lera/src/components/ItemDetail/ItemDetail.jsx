@@ -27,7 +27,7 @@ const ItemDetail = ({product}) => {
     <Card.Text>
      {product.precio}
     </Card.Text>
-    <Button onClick={()=> onAdd(2)} variant="primary">Agregar al carrito</Button>
+    <Button onClick={()=> onAdd(0)} variant="primary">Agregar al carrito</Button>
   </Card.Body>
 </Card>
 

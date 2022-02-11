@@ -2,7 +2,7 @@ import React,{useState} from "react";
 
 
 const ItemCounts=({stock,onAdd})=> {
-     const initial = 1
+     const initial = 0
     
      const [contador, setContador] = useState(initial);
 
@@ -22,7 +22,7 @@ const ItemCounts=({stock,onAdd})=> {
          <div style={{textAlign: 'center',alignItems:'center',justifyConten:'center'}}>
              <h1>{contador}</h1>
              <button onClick={restaContador}>-</button>
-             <button onClick={()=>onAdd(contador)} disabled={contador<1 && 'disabled'}>Agregar al carrito</button>
+             <button onClick={()=>onAdd(contador)} disabled={contador<0 && 'disabled'}>Agregar al carrito</button>
              <button onClick={sumaContador}>+</button>
          </div>
      )

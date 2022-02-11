@@ -4,19 +4,25 @@ import Container from 'react-bootstrap/Container';
 import { Navbar,Nav } from 'react-bootstrap';
 import Cartwidget from './Cartwidget';
 import { Link } from 'react-router-dom';
+import { useCartContext } from '../Context/CartContext';
 
 
 
 const NavBarBS = () => {
+   const {cantidadItem} = useCartContext()
+
     return ( 
       <>
       <Navbar bg="dark" variant="dark">
         <Container>
-        <Navbar.Brand to='/'>Inicio</Navbar.Brand>
+        <Link to='/'>Inicio</Link>
         <Nav className="me-auto">
           <Link to="categoria/cocina">Cocina</Link>
           <Link to="categoria/comedor">comedor</Link>
-          <Link to="/cart"><Cartwidget/></Link>
+          <Link to="/cart">
+            <Cartwidget/>
+           {cantidadItem() !== 0 && cantidadItem()}
+          </Link>
         </Nav>
         </Container>
       </Navbar>
