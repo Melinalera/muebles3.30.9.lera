@@ -52,6 +52,7 @@ const Cart = () => {
           ...dataForm,[e.target.name]: e.target.value
       })
         console.log(dataForm)
+        setCondicional(true)
     }
     
     return (
@@ -123,6 +124,7 @@ const Cart = () => {
                                 <Link to="/resumen">
                                 <button onClick={compra}>Generar Orden</button>
                                 </Link>
+                               
                             </form>
                         
                     </>

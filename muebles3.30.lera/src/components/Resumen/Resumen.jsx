@@ -3,7 +3,7 @@ import React from "react";
 function Resumen({idOrden}) {
 
     return <div>
-        Producto comprado : {idOrden}
+        Su orden de compra es : {idOrden}
     </div>;
     
 }
