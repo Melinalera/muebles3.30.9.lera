@@ -7,6 +7,7 @@ import ItemDetailContainer from './components/ItemListContainer/ItemDetailContai
 import Cart from './components/Cart/Cart';
 import {CartContextProvider} from './components/Context/CartContext'
 import Resumen from './components/Resumen/Resumen';
+import { Form } from 'react-bootstrap';
 
 
 
@@ -26,6 +27,7 @@ function App() {
       <Route exact path='/detalle/:id'element={<ItemDetailContainer/>}/>
       <Route exact path='/cart'element={<Cart/>}/>
       <Route exact path='/resumen' element={<Resumen/>}/>
+      <Route exact path= '/form' element={<Form/>}/>
   
     </Routes>
    

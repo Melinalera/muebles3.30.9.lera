@@ -73,7 +73,7 @@ const Cart = () => {
                 :
              <>
 
-                            {cartList.map(product =><li key={product.id}>
+                        {cartList.map(product =><li key={product.id}>
                         <Card style={{ width: '18rem' }}>
                         <Card.Img variant="top" src={product.img} />
                         <Card.Body>
@@ -126,7 +126,7 @@ const Cart = () => {
                             </form>
                         
                     </>
-
+                  
                 }     
                     
                 </div>)}
