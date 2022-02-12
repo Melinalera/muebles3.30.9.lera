@@ -107,21 +107,21 @@ const Cart = () => {
                                     type='text' 
                                     name='name' 
                                     placeholder='name' 
-                                   
+                                    onChange={handleChange}
                                     value={dataForm.name}
                                 /><br />
                                 <input 
                                     type='text' 
                                     name='phone'
                                     placeholder='tel' 
-                                   
+                                    onChange={handleChange}
                                     value={dataForm.phone}
                                 /><br/>
                                 <input 
                                     type='email' 
                                     name='email'
                                     placeholder='email' 
-                                    
+                                    onChange={handleChange}
                                     value={dataForm.email}
                                 /><br/>
                                 <Link to="/resumen">
