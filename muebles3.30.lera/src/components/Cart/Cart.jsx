@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { addDoc, collection, getFirestore, } from 'firebase/firestore';
+import { addDoc, collection, getFirestore,writeBatch } from 'firebase/firestore';
 import { Button, Card } from 'react-bootstrap';
 import { useCartContext } from '../Context/CartContext';
 import Resumen from '../Resumen/Resumen';
@@ -38,6 +38,7 @@ const Cart = () => {
         })
 
         const db = getFirestore()
+       
 
         const ordersCollection = collection(db,'ordenes')
         await addDoc(ordersCollection,orden)
@@ -47,11 +48,13 @@ const Cart = () => {
     }
 
     function handleChange(e) {
-
+      const db = getFirestore()  
+     const batch =writeBatch(db)
       setDataForm({
           ...dataForm,[e.target.name]: e.target.value
       })
         console.log(dataForm)
+        batch.commit()
         setCondicional(true)
     }
     
@@ -97,28 +100,28 @@ const Cart = () => {
                         
                         <button onClick={vaciarCarrito}>Vaciar Carrito</button>
                         <form 
-                                onSubmit={compra} 
-                                //onChange={handleChange} 
+                               
+                                
                             >
                                 <input 
                                     type='text' 
                                     name='name' 
                                     placeholder='name' 
-                                    onChange={handleChange}
+                                   
                                     value={dataForm.name}
                                 /><br />
                                 <input 
                                     type='text' 
                                     name='phone'
                                     placeholder='tel' 
-                                    onChange={handleChange}
+                                   
                                     value={dataForm.phone}
                                 /><br/>
                                 <input 
                                     type='email' 
                                     name='email'
                                     placeholder='email' 
-                                    onChange={handleChange}
+                                    
                                     value={dataForm.email}
                                 /><br/>
                                 <Link to="/resumen">
