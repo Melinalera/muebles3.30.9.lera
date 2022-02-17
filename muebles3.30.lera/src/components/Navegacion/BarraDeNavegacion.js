@@ -19,6 +19,11 @@ const NavBarBS = () => {
         <Nav className="me-auto">
           <Link to="categoria/cocina">Cocina</Link>
           <Link to="categoria/comedor">comedor</Link>
+          <Link to="categoria/sanitario">Sanitario</Link>
+          <Link to="categoria/patio">Patio</Link>
+          <Link to="categoria/living">Living</Link>
+          <Link to="categoria/habitacion">Habitacion</Link>
+
           <Link to="/cart">
             <Cartwidget/>
            {cantidadItem() !== 0 && cantidadItem()}

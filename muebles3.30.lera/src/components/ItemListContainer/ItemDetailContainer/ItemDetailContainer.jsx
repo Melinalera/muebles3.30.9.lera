@@ -15,7 +15,7 @@ const ItemDetailContainer = () => {
         getDoc(queryProduct) 
         .then(resp =>setProduct({id: resp.id, ...resp.data()}))
     },[])
-    console.log(product)
+         
   return <div>
 
      <ItemDetail product={product}/>

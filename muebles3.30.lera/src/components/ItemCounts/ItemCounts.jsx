@@ -2,7 +2,7 @@ import React,{useState} from "react";
 
 
 const ItemCounts=({stock,onAdd})=> {
-     const initial = 0
+     const initial = 1
     
      const [contador, setContador] = useState(initial);
 
@@ -27,5 +27,5 @@ const ItemCounts=({stock,onAdd})=> {
          </div>
      )
     
-     }
+}
      export default ItemCounts;

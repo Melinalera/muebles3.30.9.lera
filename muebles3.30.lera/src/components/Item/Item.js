@@ -11,22 +11,22 @@ const Item = ({producto}) => {
 
     return (
       
-       <Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src={img} />
-  <Card.Body>
-    <Card.Title>{name}</Card.Title>
-    <Card.Text>
-   categoria:{categoria}
-    </Card.Text>
-    <Card.Text>
-        {precio}
-    </Card.Text>
-    <Link to={`/detalle/${id}`}><Button variant="primary">Ver Detalle</Button></Link>
-  </Card.Body>
-</Card>
+   <Card style={{ width: '18rem' }}>
+   <Card.Img variant="top" src={img} />
+   <Card.Body>
+   <Card.Title>{name}</Card.Title>
+   <Card.Text>
+    categoria:{categoria}
+   </Card.Text>
+   <Card.Text>
+    {precio}
+   </Card.Text>
+   <Link to={`/detalle/${id}`}><Button variant="primary">Ver Detalle</Button></Link>
+   </Card.Body>
+   </Card>
 
     
-    )
+  )
 }
 
 export default Item

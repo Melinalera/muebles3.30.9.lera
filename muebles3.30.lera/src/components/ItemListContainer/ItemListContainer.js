@@ -2,17 +2,22 @@ import {useState,useEffect}from 'react'
 import ItemList from './itemList';
 import { useParams } from 'react-router-dom';
 import  {getFirestore,getDocs,collection,where,query} from 'firebase/firestore'
+import  CircleLoader from 'react-spinners/CircleLoader'
+import { css } from "@emotion/react";
 
 
 
 
-
-
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 const ItemListContainer = ({saludo}) => {
     const [data,setData] = useState([]);
     const [loading,setLoading]=useState(true)
-     
+    
    
     const{id} =useParams();
    
@@ -68,10 +73,10 @@ useEffect (()=>{
       
         <div>
             {loading ?(
-            <h3>Cargando...</h3>)
+            <CircleLoader loading={loading} css={override} size={150}/>)
             :( 
                <> 
-             <h2 style={{textAlign:'center'}}>{saludo}</h2>
+             <h2 style={{textAlign:'center'}}>Bienvenidos a Muebles3.30.9.lera</h2>
             <ItemList products={data}/>
              </>
              ) }

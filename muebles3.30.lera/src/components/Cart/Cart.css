@@ -1,0 +1,46 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+.cart{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 18em;
+  align-items: center;
+  
+}
+.img{
+    height: 300px;
+}
+.text{
+    display: flex;
+    left: 100%;
+    border: 5px;
+    border-radius: 2px;
+    
+}
+.lenght{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    color:brown
+}
+.button{
+color: violet
+
+}
+.forms{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 5px;
+    border-radius: 5px;
+    padding: 20px;
+    margin : 20px;
+    height: 200px;
+    background-color: navajowhite;
+}

@@ -3,15 +3,14 @@ import { Card } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ItemCounts from '../ItemCounts/ItemCounts'
-import {CartContext, useCartContext } from '../Context/CartContext';
-
+import {useCartContext } from '../Context/CartContext';
+import './ItemDetail.css'
+import { css } from "@emotion/react";
 const ItemDetail = ({product}) => {
 
   const{agregarAlCarrito} = useCartContext();
   const [show,setShow]= useState(true);
- 
-
-
+    
 
   const onAdd=(cant)=>{
 
@@ -19,26 +18,28 @@ const ItemDetail = ({product}) => {
    
     setShow(false)
   }
-  return <div>
-    <Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src={product.img} />
-  <Card.Body>
-    <Card.Title>{product.name}</Card.Title>
-    <Card.Text>
-     {product.precio}
-    </Card.Text>
-    <Button onClick={()=> onAdd(0)} variant="primary">Agregar al carrito</Button>
-  </Card.Body>
-</Card>
 
-{show?<ItemCounts stock={product.stock} onAdd={onAdd}/>:
-  <div>
-  <Link to='/'><button>Terminar la compra</button></Link>
-  <Link to='/cart'><button>Comprar</button></Link>
+  return <div>
+   <Card className="itemDetail">
+   <Card.Img className="itemDetail img" src={product.img} />
+   <Card.Body className="text">
+   <Card.Title>{product.name}</Card.Title>
+   <Card.Text>
+     Precio:
+     {product.precio}
+   </Card.Text>
+   
+   </Card.Body>
+   </Card>
+
+   {show?<ItemCounts stock={product.stock} onAdd={onAdd}/>:
+   <div className="text">
+   <Link to='/'><Button>Terminar la compra</Button></Link>
+   <Link to='/cart'><Button>Comprar</Button></Link>
   
 
   </div>}
-  </div>;
+ </div>;
 };
 
 export default ItemDetail;
