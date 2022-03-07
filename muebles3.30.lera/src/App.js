@@ -23,7 +23,7 @@ function App() {
     <NavBarBS/>
     <Routes>
       <Route exact path='/'element={<ItemListContainer/>}/>
-      <Route exact path='/categoria/:id'element={<ItemListContainer saludo='Bienvenido a Muebles3.30.9.lera'/>}/>
+      <Route exact path='/categoria/:id'element={<ItemListContainer saludo='Un beso en madrid3.30.9.lera'/>}/>
       <Route exact path='/detalle/:id'element={<ItemDetailContainer/>}/>
       <Route exact path='/cart'element={<Cart/>}/>
       <Route exact path='/resumen' element={<Resumen/>}/>
